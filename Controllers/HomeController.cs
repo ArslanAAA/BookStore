@@ -4,9 +4,17 @@ namespace BookStore.Controllers
 {
     public class HomeController : Controller
     {
-        public string index()
+        public ViewResult Index()
         {
-            return "faraaz";
+            return View();
+        }
+        public ViewResult AboutUs()
+        {
+            return View();
+        }
+        public ViewResult ContactUs()
+        {
+            return View();
         }
     }
 }
