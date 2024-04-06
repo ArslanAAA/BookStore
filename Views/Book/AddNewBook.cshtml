@@ -1,0 +1,67 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Add New Book";
+    string val = "English";
+}
+@model BookModel
+<div class="container">
+    <h3 class="">Add new book</h3>
+    @if (ViewBag.isSuccess == true)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Holy guacamole!</strong> You were able to add the book!<br/>
+            Click <a asp-controller="Book" asp-action="GetBook" asp-route-id=@ViewBag.BookId>here</a> to view the details
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+    }
+    <form method="post" asp-action="AddNewBook" asp-controller="Book">@*asp-action and asp-controller tag helpers are optional,only needed when the action method and
+        the controller are different. if we use the same controller but a different action method, then we can skip the asp-controller tag and just
+        use the asp-action method*@
+        <div asp-validation-summary="All" class="text-danger"></div>
+        @*<div class="form-group">
+            <label asp-for="MyField"></label>
+            <input asp-for="MyField" class="form-control" />
+            <span class="text-danger" asp-validation-for="MyField"></span>
+        </div> *@
+        <div class="form-group">
+            <label asp-for="Language"></label>
+            <select asp-for="Language" class="form-control" asp-items="ViewBag.Language" required>
+                <option value="">Please choose book language</option> <!--Value will decide the value passed to the object-->
+                @* <option value="Hindi">Hindi - Mother Tongue</option>
+                <option value="English" selected>English</option>
+                <option value="Dutch">Dutch</option>@* value is what will be stored in the database *@
+            </select>
+            <span class="text-danger" asp-validation-for="Language "></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Title"></label>
+            <input asp-for="Title" class="form-control" />
+            <span class = "text-danger" asp-validation-for="Title"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Author"></label>
+            <input asp-for="Author" class="form-control" />
+            <span class="text-danger" asp-validation-for="Author"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description"></label>
+            <textarea asp-for="Description" class="form-control" ></textarea>
+            <span class="text-danger" asp-validation-for="Description"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="TotalPages"></label>
+            <input asp-for="TotalPages" class="form-control" />
+            <span class="text-danger" asp-validation-for="TotalPages "></span>
+        </div>
+        <br />
+        <div clas="form-group">
+            <input type="submit" value="Add book" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
